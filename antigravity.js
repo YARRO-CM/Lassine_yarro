@@ -26,6 +26,7 @@ class Antigravity {
         this.lastMouseMoveTime = Date.now();
         this.virtualMouse = { x: 0, y: 0 };
         this.pointer = new THREE.Vector2(0, 0);
+        this.clock = new THREE.Clock();
 
         this.init();
     }
@@ -33,7 +34,7 @@ class Antigravity {
     init() {
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(35, this.container.clientWidth / this.container.clientHeight, 0.1, 1000);
-        this.camera.position.z = 50;
+        this.camera.position.set(0, 0, 50);
 
         this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
@@ -44,6 +45,7 @@ class Antigravity {
         this.createParticles();
 
         window.addEventListener('resize', this.onWindowResize.bind(this));
+        // Use window for tracking to avoid issues with elements covering the canvas
         window.addEventListener('pointermove', this.onPointerMove.bind(this));
 
         this.animate();
@@ -72,9 +74,10 @@ class Antigravity {
         this.scene.add(this.mesh);
 
         this.particlesData = [];
-        const aspect = this.container.clientWidth / this.container.clientHeight;
+
+        // Calculate viewport dimensions at camera distance
         const visibleHeight = 2 * Math.tan(THREE.MathUtils.degToRad(this.camera.fov) / 2) * this.camera.position.z;
-        const visibleWidth = visibleHeight * aspect;
+        const visibleWidth = visibleHeight * (this.container.clientWidth / this.container.clientHeight);
 
         for (let i = 0; i < this.options.count; i++) {
             const x = (Math.random() - 0.5) * visibleWidth;
@@ -97,24 +100,31 @@ class Antigravity {
 
     onPointerMove(event) {
         const rect = this.container.getBoundingClientRect();
+        // Calculate normalized coordinates (-1 to 1) relative to the container
         this.pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
         this.pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-        this.lastMouseMoveTime = Date.now();
-        this.lastMousePos.x = this.pointer.x;
-        this.lastMousePos.y = this.pointer.y;
+        const dist = Math.sqrt(Math.pow(this.pointer.x - this.lastMousePos.x, 2) + Math.pow(this.pointer.y - this.lastMousePos.y, 2));
+
+        if (dist > 0.001) {
+            this.lastMouseMoveTime = Date.now();
+            this.lastMousePos.x = this.pointer.x;
+            this.lastMousePos.y = this.pointer.y;
+        }
     }
 
     onWindowResize() {
-        this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
+        const width = this.container.clientWidth;
+        const height = this.container.clientHeight;
+        this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
-        this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+        this.renderer.setSize(width, height);
     }
 
     animate() {
         requestAnimationFrame(this.animate.bind(this));
 
-        const time = Date.now() * 0.001;
+        const time = this.clock.getElapsedTime();
         const aspect = this.container.clientWidth / this.container.clientHeight;
         const visibleHeight = 2 * Math.tan(THREE.MathUtils.degToRad(this.camera.fov) / 2) * this.camera.position.z;
         const visibleWidth = visibleHeight * aspect;
@@ -122,7 +132,7 @@ class Antigravity {
         let destX = (this.pointer.x * visibleWidth) / 2;
         let destY = (this.pointer.y * visibleHeight) / 2;
 
-        if (this.options.autoAnimate && Date.now() - this.lastMouseMoveTime > 2000) {
+        if (this.options.autoAnimate && (Date.now() - this.lastMouseMoveTime > 2000)) {
             destX = Math.sin(time * 0.5) * (visibleWidth / 4);
             destY = Math.cos(time * 0.5 * 2) * (visibleHeight / 4);
         }
@@ -131,6 +141,8 @@ class Antigravity {
         this.virtualMouse.x += (destX - this.virtualMouse.x) * smoothFactor;
         this.virtualMouse.y += (destY - this.virtualMouse.y) * smoothFactor;
 
+        const targetX = this.virtualMouse.x;
+        const targetY = this.virtualMouse.y;
         const globalRotation = time * this.options.rotationSpeed;
 
         this.particlesData.forEach((particle, i) => {
@@ -138,8 +150,8 @@ class Antigravity {
             const t = particle.t;
 
             const projectionFactor = 1 - particle.cz / 50;
-            const projectedTargetX = this.virtualMouse.x * projectionFactor;
-            const projectedTargetY = this.virtualMouse.y * projectionFactor;
+            const projectedTargetX = targetX * projectionFactor;
+            const projectedTargetY = targetY * projectionFactor;
 
             const dx = particle.mx - projectedTargetX;
             const dy = particle.my - projectedTargetY;
@@ -176,7 +188,7 @@ class Antigravity {
 
             const distFromRing = Math.abs(currentDistToMouse - this.options.ringRadius);
             let scaleFactor = 1 - distFromRing / 10;
-            scaleFactor = Math.max(0.1, Math.min(1.5, scaleFactor));
+            scaleFactor = Math.max(0, Math.min(1, scaleFactor));
 
             const finalScale = scaleFactor * (0.8 + Math.sin(t * this.options.pulseSpeed) * 0.2 * this.options.particleVariance) * this.options.particleSize;
             this.dummy.scale.set(finalScale, finalScale, finalScale);
