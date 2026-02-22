@@ -96,9 +96,9 @@ class Antigravity {
     }
 
     onPointerMove(event) {
-        const rect = this.container.getBoundingClientRect();
-        this.pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-        this.pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+        // Use window coordinates for more robust tracking as a background effect
+        this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+        this.pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
         this.lastMouseMoveTime = Date.now();
         this.lastMousePos.x = this.pointer.x;
