@@ -59,8 +59,8 @@
     </nav>
 
     <!-- Header Section -->
-    <header class="hero-subpage"
-        style="padding-top: 120px; padding-bottom: 60px; background: var(--background-secondary);">
+    <header class="hero-subpage">
+        <div id="antigravity-bg" class="antigravity-container"></div>
         <div class="container">
             <div class="hero-content" data-aos="fade-up">
                 <h1 class="highlight">Mes Stages & Expériences</h1>
@@ -69,6 +69,33 @@
             </div>
         </div>
     </header>
+
+    <script type="module">
+        import Antigravity from './antigravity.js';
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('antigravity-bg');
+            if (container) {
+                new Antigravity(container, {
+                    count: 300,
+                    magnetRadius: 6,
+                    ringRadius: 7,
+                    waveSpeed: 0.4,
+                    waveAmplitude: 1,
+                    particleSize: 1.5,
+                    lerpSpeed: 0.05,
+                    color: "#5227FF",
+                    autoAnimate: true,
+                    particleVariance: 1,
+                    rotationSpeed: 0,
+                    depthFactor: 1,
+                    pulseSpeed: 3,
+                    particleShape: "capsule",
+                    fieldStrength: 10
+                });
+            }
+        });
+    </script>
 
     <!-- Stages Section -->
     <section id="stages-content" class="stages-section" style="padding: 60px 0;">
