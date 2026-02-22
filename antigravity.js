@@ -44,7 +44,7 @@ class Antigravity {
         this.createParticles();
 
         window.addEventListener('resize', this.onWindowResize.bind(this));
-        this.container.addEventListener('pointermove', this.onPointerMove.bind(this));
+        window.addEventListener('pointermove', this.onPointerMove.bind(this));
 
         this.animate();
     }
