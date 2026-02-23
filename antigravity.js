@@ -4,14 +4,14 @@ class Antigravity {
     constructor(container, options = {}) {
         this.container = container;
         this.options = {
-            count: 300,
-            magnetRadius: 10,
+            count: 500,
+            magnetRadius: 15,
             ringRadius: 10,
-            waveSpeed: 0.4,
+            waveSpeed: 2.4,
             waveAmplitude: 1,
             particleSize: 2,
             lerpSpeed: 0.1,
-            color: '#FF9FFC',
+            color: 'rgba(40, 27, 226, 1)',
             autoAnimate: false,
             particleVariance: 1,
             rotationSpeed: 0,
