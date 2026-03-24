@@ -486,7 +486,7 @@ function initProjectsData() {
             title: "Conception et Dimensionnement d'une STEP",
             date: "nov. 2025 – janv. 2026",
             description: "Projet académique de conception et dimensionnement d'une STEP pour une commune rurale de 20 000 habitants (Province d'El Jadida). Dimensionnement de 3 filières : boues activées, filtres plantés de roseaux, lagunage naturel.",
-            image: "image/ressoucre.png",
+            image: "image/STEP.jpg",
             category: "geo",
             tags: ['Hydraulique', 'AutoCAD', 'STEP', 'Environnement']
         },
@@ -495,7 +495,7 @@ function initProjectsData() {
             title: "Barrage Multifonction (AEP & Irrigation)",
             date: "oct. 2025 – déc. 2025",
             description: "Conception complète d'un grand barrage pour l'AEP et l'irrigation de 1 000 ha. Analyse multicritère du site, dimensionnement hydraulique (BCR) et ouvrages annexes.",
-            image: "image/gis.jpeg",
+            image: "image/Barrage.jpg",
             category: "geo",
             tags: ['Hydrologie', 'Géotechnique', 'BCR', 'AEP']
         },
@@ -504,7 +504,7 @@ function initProjectsData() {
             title: "Modélisation Nappe (GMS/MODFLOW)",
             date: "oct. 2025 – déc. 2025",
             description: "Modèle hydrogéologique sous GMS pour simuler l'écoulement souterrain dans un aquifère de 33 750 ha. Analyse d'impact des pompages et bilan hydrique.",
-            image: "image/geostat.jpg",
+            image: "image/MODFLOW.jpg",
             category: "geo",
             tags: ['GMS', 'MODFLOW', 'Hydrogéologie', 'QGIS']
         },
@@ -513,7 +513,7 @@ function initProjectsData() {
             title: "Business Plan : HYDER Ingénierie",
             date: "nov. 2025 – déc. 2025",
             description: "Cocréation d'un bureau d'études fictif spécialisé en Hydraulique & Énergies Renouvelables. Étude de marché, stratégie commerciale et modélisation financière (VAN/TRI).",
-            image: "image/dashboard.png",
+            image: "image/BusinessPlan.jpg",
             category: "ai",
             tags: ['Business Plan', 'Management', 'Finances', 'Stratégie']
         },
@@ -522,7 +522,7 @@ function initProjectsData() {
             title: "Gestion des Déchets Campus IAV",
             date: "oct. 2025 – nov. 2025",
             description: "Conception d'un système intégré de gestion et de valorisation des déchets solides pour le campus de l'IAV Hassan II (restaurant et internat).",
-            image: "image/ressoucre.png",
+            image: "image/Gestiondesdechets.jpg",
             category: "geo",
             tags: ['Déchets', 'Valorisation', 'Environnement', 'Diagnostic']
         },
@@ -531,7 +531,7 @@ function initProjectsData() {
             title: "Irrigation par Énergies Renouvelables",
             date: "juin 2025 – juil. 2025",
             description: "Analyse technico-économique et environnementale (empreinte carbone, OPEX/CAPEX) de l'irrigation photovoltaïque vs butane/gasoil pour une parcelle d'avocatiers (15 ha).",
-            image: "image/geostat.jpg",
+            image: "image/IrrigationparENR.webp",
             category: "energy",
             tags: ['PV', 'Avocatier', 'Économie', 'Carbone']
         },
@@ -540,7 +540,7 @@ function initProjectsData() {
             title: "Système d'Irrigation Goutte à Goutte",
             date: "avr. 2025 – juil. 2025",
             description: "Conception et simulation hydraulique sous EPANET d'un réseau localisé. Calcul des besoins en eau, dimensionnement des rampes et systèmes de filtration/fertigation.",
-            image: "image/gis.jpeg",
+            image: "image/Gouteàgoute.webp",
             category: "irrigation",
             tags: ['EPANET', 'Hydraulique', 'Gestion de l\'eau']
         },
@@ -549,7 +549,7 @@ function initProjectsData() {
             title: "Pompage Solaire (Ain Sfa, Oujda)",
             date: "juil. 2025",
             description: "Étude et simulation RETScreen d'un système PV de 10 kWc (61 panneaux) pour pomper 120 m³/jour. Réduction de 26 tCO₂/an.",
-            image: "image/dashboard.png",
+            image: "image/pompage-solaire-.jpg",
             category: "energy",
             tags: ['RETScreen', 'PV', 'Solaire', 'Oujda']
         },
@@ -558,7 +558,7 @@ function initProjectsData() {
             title: "Assainissement Agricole (Gharb)",
             date: "mai 2025 – juin 2025",
             description: "Dimensionnement de drains et collecteurs selon la méthode de Hooghoudt. Élaboration de plans AutoCAD et devis estimatif global.",
-            image: "image/ml-classification.png",
+            image: "image/Assainissementagricole.jpg",
             category: "geo",
             tags: ['AutoCAD', 'Excel', 'Drainage', 'Gharb']
         },
@@ -567,7 +567,7 @@ function initProjectsData() {
             title: "Détection Intelligente de Fuites",
             date: "oct. 2024 – juin 2025",
             description: "Développement d'un prototype IA (Isolation Forest) couplé à Arduino pour la détection et localisation de fuites en temps réel. Présenté au SIAV devant le Ministre.",
-            image: "image/ml-classification.png",
+            image: "image/Detectionfuites.jpg",
             category: "ai",
             tags: ['IA', 'Arduino', 'Python', 'Hydraulique']
         },
@@ -576,7 +576,7 @@ function initProjectsData() {
             title: "Réseau d'Assainissement EU/EP",
             date: "avr. 2025 – mai 2025",
             description: "Dimensionnement hydraulique automatisé (Excel) pour les eaux usées et modélisation Covadis 17.0 pour les eaux pluviales (bassins versants).",
-            image: "image/gis.jpeg",
+            image: "image/AssainissementEUEP.png",
             category: "geo",
             tags: ['Covadis', 'Excel', 'Assainissement', 'Pluvial']
         },
@@ -585,7 +585,7 @@ function initProjectsData() {
             title: "Modélisation BIM Revit (R+3)",
             date: "mai 2025",
             description: "Conception architecturale et modélisation BIM complète d'une maison R+3 sous Autodesk Revit (plans, coupes, vues 3D).",
-            image: "image/webdev.jpg",
+            image: "image/Modelisation_BIM.jpg",
             category: "structure",
             tags: ['BIM', 'Revit', 'AutoCAD', 'Conception 3D']
         },
@@ -594,7 +594,7 @@ function initProjectsData() {
             title: "Analyse Structurelle RSA (Portique)",
             date: "mai 2025",
             description: "Modélisation par éléments finis d'un portique 2D sous Autodesk RSA. Analyse des déplacements, diagrammes de sollicitations et stabilité.",
-            image: "image/ml-classification.png",
+            image: "image/Analyse_portique.png",
             category: "structure",
             tags: ['RSA', 'Éléments Finis', 'Structure', 'Mécanique']
         },
@@ -603,7 +603,7 @@ function initProjectsData() {
             title: "Stabilité Mur de Soutènement",
             date: "mai 2025",
             description: "Étude géotechnique de stabilité (glissement, renversement, tassement) d'un mur en sol pulvérulent avec optimisation géométrique.",
-            image: "image/geostat.jpg",
+            image: "image/mur-de-soutenement.jpg",
             category: "structure",
             tags: ['Géotechnique', 'Stabilité', 'Sols', 'Génie Civil']
         },
@@ -612,7 +612,7 @@ function initProjectsData() {
             title: "Réseau AEP Lotissement Urbain",
             date: "févr. 2025 – avr. 2025",
             description: "Dimensionnement et simulation hydraulique sous EPANET d'un réseau AEP pour 1500 habitants. Optimisation des pressions et vitesses.",
-            image: "image/gis.jpeg",
+            image: "image/AEP.png",
             category: "geo",
             tags: ['EPANET', 'AEP', 'Hydraulique Urbaine', 'AutoCAD']
         }
