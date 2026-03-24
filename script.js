@@ -14,8 +14,26 @@ document.addEventListener('DOMContentLoaded', function () {
     initProjectsData();
     initContactForm();
     initHaptics();
+    initCustomCursor();
     setCurrentYear();
 });
+
+// Custom Cursor Logic
+function initCustomCursor() {
+    const cursor = document.querySelector('.custom-cursor');
+    if (!cursor) return;
+
+    document.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    const hoverables = document.querySelectorAll('a, button, .project-item, .skill-item, .tech-item');
+    hoverables.forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+}
 
 // Loader logic
 function initLoader() {
@@ -431,10 +449,11 @@ function initBackToTop() {
 // Projects filter functionality
 function initProjectsFilter() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectItems = document.querySelectorAll('.project-item');
-
+    
     filterButtons.forEach(button => {
         button.addEventListener('click', function () {
+            const projectItems = document.querySelectorAll('.project-item');
+            
             // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
 
@@ -445,21 +464,14 @@ function initProjectsFilter() {
             const filterValue = this.getAttribute('data-filter');
 
             // Filter projects
-            if (projectItems.length > 0) {
-                if (filterValue === 'all') {
-                    projectItems.forEach(item => {
-                        item.style.display = 'block';
-                    });
+            projectItems.forEach(item => {
+                if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                    item.style.display = 'block';
+                    item.style.animation = 'fadeInUp 0.5s ease forwards';
                 } else {
-                    projectItems.forEach(item => {
-                        if (item.classList.contains(filterValue)) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
+                    item.style.display = 'none';
                 }
-            }
+            });
         });
     });
 }
@@ -471,43 +483,138 @@ function initProjectsData() {
     const projects = [
         {
             id: 1,
-            title: " IA & Détection des Fuites d'Eau",
-            description: "Développement d'un modèle de Machine Learning pour détecter et prédire les fuites sur réseaux hydrauliques. Présenté lors du Grand Forum de l'IAV Hassan II.",
-            image: "image/webdev.jpg",
-            category: "ml",
-            tags: ['Python', 'Machine Learning', 'Hydraulique', 'Analyse de Données']
+            title: "Conception et Dimensionnement d'une STEP",
+            date: "nov. 2025 – janv. 2026",
+            description: "Projet académique de conception et dimensionnement d'une STEP pour une commune rurale de 20 000 habitants (Province d'El Jadida). Dimensionnement de 3 filières : boues activées, filtres plantés de roseaux, lagunage naturel.",
+            image: "image/ressoucre.png",
+            category: "geo",
+            tags: ['Hydraulique', 'AutoCAD', 'STEP', 'Environnement']
         },
         {
             id: 2,
-            title: "Étude de Dépollution (NOVEC)",
-            description: "Étude de dépollution d'un fleuve et projet d'interconnexion des bassins hydrauliques. Suivi de la qualité de l'eau et impacts environnementaux.",
-            image: "image/dashboard.png",
+            title: "Barrage Multifonction (AEP & Irrigation)",
+            date: "oct. 2025 – déc. 2025",
+            description: "Conception complète d'un grand barrage pour l'AEP et l'irrigation de 1 000 ha. Analyse multicritère du site, dimensionnement hydraulique (BCR) et ouvrages annexes.",
+            image: "image/gis.jpeg",
             category: "geo",
-            tags: ['Qualité de l\'eau', 'GRI', 'Environnement', 'Étude technique']
+            tags: ['Hydrologie', 'Géotechnique', 'BCR', 'AEP']
         },
         {
             id: 3,
-            title: "Schéma Directeur AEP",
-            description: "Planification hydraulique, projection démographique et modélisation de réseaux pour le renforcement de l'AEP urbaine et rurale.",
-            image: "image/ml-classification.png",
+            title: "Modélisation Nappe (GMS/MODFLOW)",
+            date: "oct. 2025 – déc. 2025",
+            description: "Modèle hydrogéologique sous GMS pour simuler l'écoulement souterrain dans un aquifère de 33 750 ha. Analyse d'impact des pompages et bilan hydrique.",
+            image: "image/geostat.jpg",
             category: "geo",
-            tags: ['EPANET', 'Modélisation', 'Planification', 'SIG']
+            tags: ['GMS', 'MODFLOW', 'Hydrogéologie', 'QGIS']
         },
         {
             id: 4,
-            title: "Diagnostic Périmètres Irrigués",
-            description: "Analyse GIRE (Gestion Intégrée des Ressources en Eau) et évaluation des infrastructures agricoles dans les régions Gharb-Bouregreg.",
-            image: "image/gis.jpeg",
-            category: "geo",
-            tags: ['GIRE', 'Agriculture', 'Infrastructures', 'Analyse Terrain']
+            title: "Business Plan : HYDER Ingénierie",
+            date: "nov. 2025 – déc. 2025",
+            description: "Cocréation d'un bureau d'études fictif spécialisé en Hydraulique & Énergies Renouvelables. Étude de marché, stratégie commerciale et modélisation financière (VAN/TRI).",
+            image: "image/dashboard.png",
+            category: "ai",
+            tags: ['Business Plan', 'Management', 'Finances', 'Stratégie']
         },
         {
             id: 5,
-            title: "Valorisation de la Saumure",
-            description: "Publication sur les enjeux environnementaux et opportunités économiques de la valorisation de la saumure issue du dessalement.",
+            title: "Gestion des Déchets Campus IAV",
+            date: "oct. 2025 – nov. 2025",
+            description: "Conception d'un système intégré de gestion et de valorisation des déchets solides pour le campus de l'IAV Hassan II (restaurant et internat).",
             image: "image/ressoucre.png",
             category: "geo",
-            tags: ['Dessalement', 'Économie Circulaire', 'Environnement']
+            tags: ['Déchets', 'Valorisation', 'Environnement', 'Diagnostic']
+        },
+        {
+            id: 6,
+            title: "Irrigation par Énergies Renouvelables",
+            date: "juin 2025 – juil. 2025",
+            description: "Analyse technico-économique et environnementale (empreinte carbone, OPEX/CAPEX) de l'irrigation photovoltaïque vs butane/gasoil pour une parcelle d'avocatiers (15 ha).",
+            image: "image/geostat.jpg",
+            category: "energy",
+            tags: ['PV', 'Avocatier', 'Économie', 'Carbone']
+        },
+        {
+            id: 7,
+            title: "Système d'Irrigation Goutte à Goutte",
+            date: "avr. 2025 – juil. 2025",
+            description: "Conception et simulation hydraulique sous EPANET d'un réseau localisé. Calcul des besoins en eau, dimensionnement des rampes et systèmes de filtration/fertigation.",
+            image: "image/gis.jpeg",
+            category: "irrigation",
+            tags: ['EPANET', 'Hydraulique', 'Gestion de l\'eau']
+        },
+        {
+            id: 8,
+            title: "Pompage Solaire (Ain Sfa, Oujda)",
+            date: "juil. 2025",
+            description: "Étude et simulation RETScreen d'un système PV de 10 kWc (61 panneaux) pour pomper 120 m³/jour. Réduction de 26 tCO₂/an.",
+            image: "image/dashboard.png",
+            category: "energy",
+            tags: ['RETScreen', 'PV', 'Solaire', 'Oujda']
+        },
+        {
+            id: 9,
+            title: "Assainissement Agricole (Gharb)",
+            date: "mai 2025 – juin 2025",
+            description: "Dimensionnement de drains et collecteurs selon la méthode de Hooghoudt. Élaboration de plans AutoCAD et devis estimatif global.",
+            image: "image/ml-classification.png",
+            category: "geo",
+            tags: ['AutoCAD', 'Excel', 'Drainage', 'Gharb']
+        },
+        {
+            id: 10,
+            title: "Détection Intelligente de Fuites",
+            date: "oct. 2024 – juin 2025",
+            description: "Développement d'un prototype IA (Isolation Forest) couplé à Arduino pour la détection et localisation de fuites en temps réel. Présenté au SIAV devant le Ministre.",
+            image: "image/ml-classification.png",
+            category: "ai",
+            tags: ['IA', 'Arduino', 'Python', 'Hydraulique']
+        },
+        {
+            id: 11,
+            title: "Réseau d'Assainissement EU/EP",
+            date: "avr. 2025 – mai 2025",
+            description: "Dimensionnement hydraulique automatisé (Excel) pour les eaux usées et modélisation Covadis 17.0 pour les eaux pluviales (bassins versants).",
+            image: "image/gis.jpeg",
+            category: "geo",
+            tags: ['Covadis', 'Excel', 'Assainissement', 'Pluvial']
+        },
+        {
+            id: 12,
+            title: "Modélisation BIM Revit (R+3)",
+            date: "mai 2025",
+            description: "Conception architecturale et modélisation BIM complète d'une maison R+3 sous Autodesk Revit (plans, coupes, vues 3D).",
+            image: "image/webdev.jpg",
+            category: "structure",
+            tags: ['BIM', 'Revit', 'AutoCAD', 'Conception 3D']
+        },
+        {
+            id: 13,
+            title: "Analyse Structurelle RSA (Portique)",
+            date: "mai 2025",
+            description: "Modélisation par éléments finis d'un portique 2D sous Autodesk RSA. Analyse des déplacements, diagrammes de sollicitations et stabilité.",
+            image: "image/ml-classification.png",
+            category: "structure",
+            tags: ['RSA', 'Éléments Finis', 'Structure', 'Mécanique']
+        },
+        {
+            id: 14,
+            title: "Stabilité Mur de Soutènement",
+            date: "mai 2025",
+            description: "Étude géotechnique de stabilité (glissement, renversement, tassement) d'un mur en sol pulvérulent avec optimisation géométrique.",
+            image: "image/geostat.jpg",
+            category: "structure",
+            tags: ['Géotechnique', 'Stabilité', 'Sols', 'Génie Civil']
+        },
+        {
+            id: 15,
+            title: "Réseau AEP Lotissement Urbain",
+            date: "févr. 2025 – avr. 2025",
+            description: "Dimensionnement et simulation hydraulique sous EPANET d'un réseau AEP pour 1500 habitants. Optimisation des pressions et vitesses.",
+            image: "image/gis.jpeg",
+            category: "geo",
+            tags: ['EPANET', 'AEP', 'Hydraulique Urbaine', 'AutoCAD']
         }
     ];
 
@@ -520,7 +627,8 @@ function initProjectsData() {
         projectItem.innerHTML = `
             <img src="${project.image}" alt="${project.title}" class="project-img" loading="lazy" decoding="async">
             <div class="project-content">
-                <h3>${project.title}</h3>
+                <span class="project-date" style="font-size: 0.8rem; color: var(--text-color-light);">${project.date}</span>
+                <h3 style="margin-top: 5px;">${project.title}</h3>
                 <p>${project.description}</p>
                 <div class="project-tags">
                     ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}

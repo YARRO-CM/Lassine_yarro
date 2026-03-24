@@ -3,7 +3,7 @@
   https://github.com/adilshamim8 - Used under MIT License
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="image" href="image/profile.jpg">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="chatbot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -33,6 +32,7 @@
     </div>
     <div id="scroll-progress" class="scroll-progress"></div>
     <div id="toast-container" class="toast-container"></div>
+    <div class="custom-cursor"></div>
 
     <a href="#home" class="skip-link"
         style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to main content</a>
@@ -99,7 +99,7 @@
     <section id="about" class="about section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2>About Me</h2>
+                <h2>À Propos</h2>
                 <div class="underline"></div>
             </div>
             <div class="about-content">
@@ -161,15 +161,17 @@
     <section id="projects" class="projects section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2>My Projects</h2>
+                <h2>Mes Projets</h2>
                 <div class="underline"></div>
             </div>
-            <!-- <div class="project-filters" data-aos="fade-up" data-aos-delay="200">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="web">ML Models</button>
-                    <button class="filter-btn" data-filter="app">Applications</button>
-                    <button class="filter-btn" data-filter="competition">Competitions</button>
-                </div> -->
+            <div class="project-filters" data-aos="fade-up" data-aos-delay="200">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="geo">Génie Rural & SIG</button>
+                <button class="filter-btn" data-filter="structure">Bâtiment & Structure</button>
+                <button class="filter-btn" data-filter="irrigation">Irrigation</button>
+                <button class="filter-btn" data-filter="energy">Énergies</button>
+                <button class="filter-btn" data-filter="ai">IA & Business</button>
+            </div>
             <div class="projects-grid">
                 <!-- Project items will be dynamically generated with JavaScript -->
             </div>
@@ -180,7 +182,7 @@
     <section id="skills" class="skills section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2>My Skills</h2>
+                <h2>Mes Compétences</h2>
                 <div class="underline"></div>
             </div>
 
@@ -269,48 +271,46 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Professional Skills (Original Version) -->
-        <div class="skill-category" data-aos="fade-up" data-aos-delay="500">
-            <h3>Professional Skills</h3>
-            <div class="skills-grid">
-                <div class="skill-item" data-skill="Communication">
-                    <div class="skill-icon"><i class="fas fa-comments"></i></div>
-                    <h4>Communication</h4>
-                    <div class="skill-progress">
-                        <div class="progress-bar" style="width: 90%"></div>
+                <!-- Compétences Professionnelles -->
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="500">
+                    <h3>Compétences Professionnelles</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item" data-skill="Communication">
+                            <div class="skill-icon"><i class="fas fa-comments"></i></div>
+                            <h4>Communication</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 90%"></div>
+                            </div>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                        <div class="skill-item" data-skill="Travail d'Équipe">
+                            <div class="skill-icon"><i class="fas fa-users"></i></div>
+                            <h4>Travail d'Équipe</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 85%"></div>
+                            </div>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                        <div class="skill-item" data-skill="Résolution de Problèmes">
+                            <div class="skill-icon"><i class="fas fa-puzzle-piece"></i></div>
+                            <h4>Résolution de Problèmes</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 88%"></div>
+                            </div>
+                            <span class="skill-percentage">88%</span>
+                        </div>
+                        <div class="skill-item" data-skill="Créativité">
+                            <div class="skill-icon"><i class="fas fa-lightbulb"></i></div>
+                            <h4>Créativité</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 92%"></div>
+                            </div>
+                            <span class="skill-percentage">92%</span>
+                        </div>
                     </div>
-                    <span class="skill-percentage"></span>
-                </div>
-                <div class="skill-item" data-skill="Teamwork">
-                    <div class="skill-icon"><i class="fas fa-users"></i></div>
-                    <h4>Teamwork</h4>
-                    <div class="skill-progress">
-                        <div class="progress-bar" style="width: 85%"></div>
-                    </div>
-                    <span class="skill-percentage"></span>
-                </div>
-                <div class="skill-item" data-skill="Problem Solving">
-                    <div class="skill-icon"><i class="fas fa-puzzle-piece"></i></div>
-                    <h4>Problem Solving</h4>
-                    <div class="skill-progress">
-                        <div class="progress-bar" style="width: 88%"></div>
-                    </div>
-                    <span class="skill-percentage"></span>
-                </div>
-                <div class="skill-item" data-skill="Creativity">
-                    <div class="skill-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h4>Creativity</h4>
-                    <div class="skill-progress">
-                        <div class="progress-bar" style="width: 92%"></div>
-                    </div>
-                    <span class="skill-percentage"></span>
                 </div>
             </div>
-        </div>
-        </div>
         </div>
     </section>
 
@@ -515,8 +515,8 @@
             </div>
             <div class="contact-content">
                 <div class="contact-info" data-aos="fade-right" data-aos-duration="800">
-                    <h3>Get In Touch</h3>
-                    <p>Feel free to reach out to me for any questions or opportunities!</p>
+                    <h3>Contactez-moi</h3>
+                    <p>N'hésitez pas à me contacter pour toute question ou opportunité professionnelle !</p>
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
@@ -533,6 +533,20 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <form id="contact-form" class="contact-form" style="margin-top: 2rem;">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Votre Nom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Votre Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Votre Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Envoyer le Message</button>
+                        <div id="form-status"></div>
+                    </form>
                 </div>
 
                 <!-- Code snippet showcase -->

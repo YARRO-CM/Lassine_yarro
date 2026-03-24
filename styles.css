@@ -121,6 +121,44 @@
     --gradient-pastel-overlay: radial-gradient(1200px 800px at 80% 10%, rgba(90, 160, 255, 0.18) 0%, rgba(155, 146, 255, 0.18) 35%, rgba(255, 153, 153, 0.08) 60%, rgba(0, 0, 0, 0) 70%);
 }
 
+/* Glassmorphism Classes */
+.card-glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .card-glass {
+    background: rgba(28, 28, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Custom Cursor */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease;
+    display: none;
+}
+
+@media (pointer: fine) {
+    .custom-cursor {
+        display: block;
+    }
+}
+
+.custom-cursor.hover {
+    transform: scale(2.5);
+    background: rgba(10, 132, 255, 0.5);
+}
+
 /* ===== RESET & BASE STYLES - iOS ===== */
 * {
     margin: 0;
@@ -1065,43 +1103,42 @@ button {
     color: var(--text-color-light);
     line-height: 1.5;
     margin-bottom: var(--spacing-16);
-    line-height: 1.25;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     flex: 1;
+}
 
-    /* ===== CODE SNIPPET CONTAINER (Contact section) - FROSTED GLASS ===== */
-    .code-snippet-container {
-        background: color-mix(in oklab, var(--background-elevated), transparent 25%);
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius-medium);
-        box-shadow: 0 8px 28px var(--shadow-color);
-        overflow: hidden;
-        backdrop-filter: var(--blur-light);
-        -webkit-backdrop-filter: var(--blur-light);
-    }
+/* ===== CODE SNIPPET CONTAINER (Contact section) - FROSTED GLASS ===== */
+.code-snippet-container {
+    background: color-mix(in oklab, var(--background-elevated), transparent 25%);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+    box-shadow: 0 8px 28px var(--shadow-color);
+    overflow: hidden;
+    backdrop-filter: var(--blur-light);
+    -webkit-backdrop-filter: var(--blur-light);
+}
 
-    .code-snippet-container .code-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: var(--spacing-12) var(--spacing-16);
-        background: var(--gradient-primary);
-        color: white;
-    }
+.code-snippet-container .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-12) var(--spacing-16);
+    background: var(--gradient-primary);
+    color: white;
+}
 
-    .code-snippet-container pre {
-        margin: 0;
-        padding: var(--spacing-16);
-        background: color-mix(in oklab, var(--background-alt), transparent 10%);
-    }
+.code-snippet-container pre {
+    margin: 0;
+    padding: var(--spacing-16);
+    background: color-mix(in oklab, var(--background-alt), transparent 10%);
+}
 
-    .code-snippet-container code {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        font-size: 0.9rem;
-        line-height: 1.6;
-        color: var(--text-color);
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
-    }
+.code-snippet-container code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
 }
 
 .project-tags {
